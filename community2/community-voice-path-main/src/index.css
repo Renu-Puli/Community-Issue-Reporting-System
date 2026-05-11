@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 224 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 30% 12%;
+
+    --primary: 230 80% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 174 60% 46%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 280 60% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 16% 88%;
+    --input: 220 16% 88%;
+    --ring: 230 80% 56%;
+
+    --radius: 0.75rem;
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(230, 80%, 56%), hsl(280, 60%, 56%));
+    --gradient-secondary: linear-gradient(135deg, hsl(174, 60%, 46%), hsl(230, 80%, 56%));
+    --gradient-hero: linear-gradient(135deg, hsl(230, 80%, 20%), hsl(280, 60%, 30%), hsl(174, 60%, 30%));
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+    --shadow-elevated: 0 20px 60px -12px rgba(50, 50, 93, 0.15), 0 10px 36px -18px rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 4px 24px -2px rgba(50, 50, 93, 0.1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 224 30% 8%;
+    --foreground: 220 14% 92%;
+
+    --card: 224 25% 12%;
+    --card-foreground: 220 14% 92%;
+
+    --popover: 224 25% 12%;
+    --popover-foreground: 220 14% 92%;
+
+    --primary: 230 80% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 174 60% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 224 20% 18%;
+    --muted-foreground: 220 10% 56%;
+
+    --accent: 280 60% 62%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 224 20% 20%;
+    --input: 224 20% 20%;
+    --ring: 230 80% 62%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(230, 80%, 12%), hsl(280, 60%, 18%), hsl(174, 60%, 16%));
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/85 backdrop-blur-xl border border-border/50 rounded-2xl;
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-card-strong {
+    @apply bg-card/90 backdrop-blur-2xl border border-border/60 rounded-2xl;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .gradient-bg {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-btn {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground rounded-xl px-6 py-3 font-semibold transition-all duration-300;
+    box-shadow: 0 4px 15px -3px hsl(230 80% 56% / 0.4);
+  }
+
+  .gradient-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px hsl(230 80% 56% / 0.5);
+  }
+
+  .gradient-btn:active {
+    transform: translateY(0);
+  }
+
+  .status-raised {
+    @apply bg-warning/15 text-warning border border-warning/30;
+  }
+
+  .status-process {
+    @apply bg-primary/15 text-primary border border-primary/30;
+  }
+
+  .status-completed {
+    @apply bg-success/15 text-success border border-success/30;
+  }
+
+  .priority-low {
+    @apply bg-success/15 text-success;
+  }
+
+  .priority-medium {
+    @apply bg-warning/15 text-warning;
+  }
+
+  .priority-high {
+    @apply bg-destructive/15 text-destructive;
+  }
+
+  .priority-critical {
+    @apply bg-destructive/25 text-destructive font-bold;
+  }
+
+  /* Dashboard page themes with common background image */
+  .dashboard-admin,
+  .dashboard-worker,
+  .dashboard-citizen,
+  .dashboard-new-complaint {
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  .dashboard-admin {
+    background-image: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%), url('/community-bg.png');
+  }
+
+  .dashboard-worker {
+    background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(20, 184, 166, 0.15) 50%, rgba(6, 182, 212, 0.15) 100%), url('/community-bg.png');
+  }
+
+  .dashboard-citizen {
+    background-image: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(239, 68, 68, 0.15) 50%, rgba(236, 72, 153, 0.15) 100%), url('/community-bg.png');
+  }
+
+  .dashboard-new-complaint {
+    background-image: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 50%, rgba(16, 185, 129, 0.15) 100%), url('/community-bg.png');
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .admin-hero, .worker-hero, .citizen-hero {
+    @apply glass-card border-none;
+  }
+
+  .badge-admin {
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.7);
+    @apply font-bold tracking-wide;
+  }
+
+  .badge-worker {
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.7);
+    @apply font-bold tracking-wide;
+  }
+
+  .badge-citizen {
+    background: linear-gradient(90deg, #f59e0b, #ef4444);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.7);
+    @apply font-bold tracking-wide;
+  }
+
+  /* Role-specific stat cards (applying shiny border/glow effects) */
+  /* Removed role-specific stat card shiny effects to default to white glass-card */
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(230 80% 56% / 0.2); }
+    to { box-shadow: 0 0 40px hsl(230 80% 56% / 0.4); }
+  }
+}
