@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     profession?: string
   ) => {
     try {
-      await apiPost('/auth/register', { email, password, name, role, profession });
+      await apiPost('/api/auth/register', { email, password, name, role, profession });
       return { error: null };
     } catch (err: any) {
       return { error: { message: err.message || 'Registration failed' } };
@@ -72,7 +72,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signIn = async (email: string, password: string) => {
     try {
       const data = await apiPost<{ token: string; user: UserProfile }>(
-        '/auth/login',
+        '/api/auth/login',
         { email, password }
       );
       localStorage.setItem('token', data.token);
