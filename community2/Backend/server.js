@@ -14,7 +14,12 @@ connectDB();
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:8080", "http://localhost:3000"],
+    origin: [
+ "http://localhost:5173",
+ "http://localhost:8080",
+ "http://localhost:3000",
+ "https://community-issue-reporting-system-inky.vercel.app"
+],
     credentials: true,
 }));
 app.use(express.json({ limit: "50mb" }));
