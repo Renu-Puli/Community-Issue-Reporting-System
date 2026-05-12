@@ -4,6 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { apiGet, apiPatch } from '@/lib/api';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 import { FileText, Clock, CheckCircle, AlertCircle, BarChart3, Users, Filter, Shield, UserCog, ClipboardList, Eye, Star } from 'lucide-react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import WelcomeHero from '@/components/WelcomeHero';
