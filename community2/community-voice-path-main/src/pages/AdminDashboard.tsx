@@ -58,8 +58,8 @@ const AdminDashboard = () => {
     }
     try {
       const [complaintsData, workersData] = await Promise.all([
-        apiGet<Complaint[]>('/complaints'),
-        apiGet<Worker[]>('/auth/workers'),
+        apiGet<Complaint[]>('/api/complaints'),
+        apiGet<Worker[]>('/api/auth/workers'),
       ]);
       setComplaints(complaintsData);
       setWorkers(workersData);
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
 
   const updateComplaint = async (id: string, updates: Record<string, any>) => {
     try {
-      await apiPatch(`/complaints/${id}`, updates);
+      await apiPatch(`/api/complaints/${id}`, updates);
       toast.success(t('common.success'));
       fetchData();
     } catch (err: any) {

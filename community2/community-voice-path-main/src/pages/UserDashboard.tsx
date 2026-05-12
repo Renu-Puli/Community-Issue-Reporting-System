@@ -43,7 +43,7 @@ const UserDashboard = () => {
       return;
     }
     try {
-      await apiPost(`/complaints/${id}/feedback`, { rating, comment });
+      await apiPost(`/api/complaints/${id}/feedback`, { rating, comment });
       toast.success(t('dashboard.feedbackSubmitted') || 'Feedback submitted successfully');
       fetchComplaints();
     } catch (err: unknown) {
@@ -55,7 +55,7 @@ const UserDashboard = () => {
   const fetchComplaints = async () => {
     if (!user) return;
     try {
-      const data = await apiGet<Complaint[]>('/complaints/my');
+      const data = await apiGet<Complaint[]>('/api/complaints/my');
       setComplaints(data);
     } catch (err) {
       console.error('Failed to fetch complaints:', err);

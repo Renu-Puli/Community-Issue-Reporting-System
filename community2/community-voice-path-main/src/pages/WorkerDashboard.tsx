@@ -42,7 +42,7 @@ const WorkerDashboard = () => {
   const fetchComplaints = async () => {
     if (!user) return;
     try {
-      const data = await apiGet<Complaint[]>('/complaints/worker');
+      const data = await apiGet<Complaint[]>('/api/complaints/worker');
       setAllAssigned(data);
     } catch (err) {
       console.error('Failed to fetch complaints:', err);
@@ -64,7 +64,7 @@ const WorkerDashboard = () => {
 
   const pickUp = async (id: string) => {
     try {
-      await apiPatch(`/complaints/${id}/pick`, {});
+      await apiPatch(`/api/complaints/${id}/pick`, {});
       toast.success(t('dashboard.pickedUpSuccess'));
       fetchComplaints();
     } catch (err: any) {
@@ -76,7 +76,7 @@ const WorkerDashboard = () => {
     const remarks = remarksInput[id];
     if (!remarks) { toast.error(t('dashboard.remarksRequired')); return; }
     try {
-      await apiPatch(`/complaints/${id}/complete`, { remarks, status: 'In Progress' });
+      await apiPatch(`/api/complaints/${id}/complete`, { remarks, status: 'In Progress' });
       toast.success(t('dashboard.remarksSaved'));
       setRemarksInput({ ...remarksInput, [id]: '' });
       fetchComplaints();
@@ -144,7 +144,7 @@ const WorkerDashboard = () => {
       return;
     }
     try {
-      await apiPatch(`/complaints/${id}/complete`, {
+      await apiPatch(`/api/complaints/${id}/complete`, {
         status: 'Completed',
         remarks: remarksInput[id] || undefined,
         proofImage: proofImages[id],

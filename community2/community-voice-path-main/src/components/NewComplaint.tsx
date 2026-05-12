@@ -73,7 +73,7 @@ const NewComplaint = () => {
     setLoading(true);
 
     try {
-      await apiPost('/complaints', form);
+      await apiPost('/api/complaints', form);
       toast.success(t('common.success'));
       setForm({ title: '', description: '', category: 'roads', location: '', issueImage: '' });
     } catch (err: any) {
