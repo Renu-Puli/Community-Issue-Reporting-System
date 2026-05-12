@@ -47,7 +47,14 @@ const AdminDashboard = () => {
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterPriority, setFilterPriority] = useState('all');
 
+  const { token } = useAuth();
+  const navigate = useNavigate();
   const fetchData = async () => {
+    if (!token) {
+      // Not authenticated – redirect to login
+      navigate('/login');
+      return;
+    }
     try {
       const [complaintsData, workersData] = await Promise.all([
         apiGet<Complaint[]>('/complaints'),

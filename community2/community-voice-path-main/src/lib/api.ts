@@ -1,12 +1,10 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-
-const getToken = () => localStorage.getItem("token");
+const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000/api").replace(/\/+$/, "");
 
 export const api = async (
     path: string,
     options: RequestInit = {}
 ): Promise<Response> => {
-    const token = getToken();
+    const token = localStorage.getItem("token");
     const headers: HeadersInit = {
         "Content-Type": "application/json",
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -17,6 +15,14 @@ export const api = async (
         ...options,
         headers,
     });
+
+    // If the backend says the token is invalid, clean up local storage
+    if (response.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        // Optionally you could force a reload to the login page
+        // window.location.href = "/login";
+    }
 
     return response;
 };
